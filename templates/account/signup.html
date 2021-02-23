@@ -1,0 +1,69 @@
+{% extends 'mainapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Header bg-gradient-primary
+    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-image:linear-gradient(#1F1C18, #8E0E00)">-->
+    <div class="header py-7 py-lg-8 pt-lg-9" style="background-image:linear-gradient(#181818, #BA8B02)">
+    <!--<div class="header  py-7 py-lg-8 pt-lg-9" style="background-image:linear-gradient(#141517, #6A9113)">
+    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-image:linear-gradient(#0b8793, #360033)">-->
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+              <h1 class="text-white" style="font-family: 'DM Serif Display', serif !important;font-size:45px;">Join Us Today!</h1>
+              <p class="text-lead text-white">Let's join arms and solve problems together</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--9 pb-5">
+      <!-- Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary border border-soft">
+            <div class="card-header bg-transparent pb-5">
+              <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+              <div class="text-center">
+                <a href="" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"><img src=""></span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Or sign up with credentials</small>
+              </div>
+              <form role="form" method="POST">
+              {% csrf_token %}
+                <div class="form-group">
+                  {{ form|crispy }}
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mt-4">Create account</button>
+                </div>
+              </form>
+              
+            </div>
+            
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              
+            </div>
+            <div class="col-6 text-right">
+              <a href="{% url 'account_login' %}" class="badge badge-pill badge-primary text-white">Login Instead</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+

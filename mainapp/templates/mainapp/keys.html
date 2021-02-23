@@ -1,0 +1,14 @@
+{% extends "mainapp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+<div class="container"> 
+        {% for item in enkeys %}
+        <p>Your Encryption Key is <b>{{item.enc_key}}</b></p><br>
+        <p><a href="{% url 'mainapp:change-key' item.id %}">You can change it here</a></p>
+        {% endfor %}
+</div>  
+
+{% endblock content %}

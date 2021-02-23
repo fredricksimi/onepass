@@ -1,0 +1,74 @@
+{% extends "mainapp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br><br><br><br><br><br>
+{% if user_key %}
+<div class="container">
+    <p>
+        <a class="btn btn-success" data-toggle="modal" data-target="#passwordModal">Add a Note</a>
+    </p>
+</div>
+<br>
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-label="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="model-header">
+                    <h5 class="modal-title pl-3 pt-3" id="passwordModalLabel">Add a Note</h5>
+                    <button type="button" class="close pr-3" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-grid align-items-center mb-2 mb-md-4">
+                    <!--<div class="col-12 col-md-12 order-md-2">-->
+                        <br>
+                        <div class="col-12 mx-auto">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-12">{{form.note_title|as_crispy_field}}</div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">{{form.note_content|as_crispy_field}}</div>
+                            </div>
+                            
+                            <input type="submit" class="btn btn-primary animate-up-2" value="Submit">
+                        </form>
+                        </div>
+                    <!--</div>-->
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary"></button> -->
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="container"> 
+    <div class="card-deck">
+        {% for item in notes %}
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 card-group">
+            <div class="card mt-5" style="border-radius:15px;">
+                <a href="{% url 'mainapp:note' item.id %}" class="pt-4 pb-4" style="background-color: purple;">
+                    <!-- <img src="" class="card-img-top"> -->
+                    <center>
+                        <i class="icofont-ui-note" style="font-size:50px;color: white;"></i>
+                    </center>
+                </a>
+                <div class="card-body bg-white" style="border-radius:0 0 15px 15px;box-shadow: 0 15px 12px rgba(0, 0, 0, 0.2)">
+                    <h5 class="card-title"><a href="{% url 'mainapp:note' item.id %}">{{item.note_title}}</a></h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+<p class="text-center">Start by setting your encryption key <a href="{% url 'mainapp:set-encryption' %}">here</a></p>  
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "mainapp/base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+<div class="container">
+    <p class="text-danger">ENCRYPTED</p>
+    <p>Note Title: {{use_note.note_title}}</p>
+    <p>Note Content: {{use_note.note_content}}</p>
+    <br><br>
+    <a href="{% url 'mainapp:decrypt-note' use_note.id %}"><button class="btn btn-primary">Decrypt</button></a>
+</div>
+
+{% endblock content %}

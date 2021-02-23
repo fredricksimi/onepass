@@ -1,0 +1,64 @@
+{% extends 'mainapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+  <!-- Main content bg-gradient-primary-->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-image:linear-gradient(#1F1C18, #8E0E00)">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+              <h1 class="text-white" style="font-family: 'DM Serif Display', serif !important;font-size:45px;">Welcome Back!</h1>
+              <p class="text-lead text-white">Use this form to login into your account.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--9 pb-5 text-gray">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary border border-soft mb-0">
+            <div class="card-header bg-transparent pb-5">
+              <div class="text-center mt-2 mb-3"><small>Sign in with</small></div>
+              <div class="btn-wrapper text-center">
+                <a href="" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"><img src=""></span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center mb-4">
+                <small>Or sign in with credentials</small>
+              </div>
+              <form role="form" method="POST">
+              {% csrf_token %}
+                <div class="form-group mb-3">
+                  {{form|crispy}}
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="{% url 'account_reset_password' %}" class="text-gray"><small>Forgot password?</small></a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="{% url 'account_signup' %}" class="badge badge-pill badge-primary text-white">Create new account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
